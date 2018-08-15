@@ -38,13 +38,13 @@ class Student
     DB[:conn].execute(sql)
   end 
   
-  def self.students_below_12th_grade(name)
+  def self.students_below_12th_grade
     sql = <<-SQL
       SELECT students.name FROM students 
       WHERE grade <= 11 
     SQL
     
-    DB[:conn].execute(sql, name).map do |row|
+    DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
     end
   end 
